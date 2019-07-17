@@ -33,7 +33,7 @@ Goal: Building the most intelligent co-driver.
 
 RoadAI is a mobile app that brings the most intelligent co-driver to your pocket. 
 
-How does RoadAI work ?
+How does RoadAI work?
 
 ![app]
 
