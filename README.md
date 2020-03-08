@@ -24,9 +24,9 @@ Using PyTorch framework from Facebook and public datasets, we trained an AI mode
 
 **Android App**
 
-![app1] ![app2] ![app3] ![app4]
+![app1] ![app4] ![app2] ![app3] 
 
-Place your phone in your car phone holder and press "Begin my trip button". Your phone detects red traffic lights, stop signs, cars and pedestrians, warns you and makes your driving experience safer.  Users can also share their ride footage and contribute in making the model even smarter and more robust.
+Your phone detects red traffic lights, stop signs, cars and pedestrians, warns you and makes your driving experience safer.  Users can also share their ride footage and contribute in making the model even smarter and more robust.
 
 **Project Structure - Files**
 
