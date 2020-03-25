@@ -28,10 +28,89 @@ Using PyTorch framework from Facebook and public datasets, we trained an AI mode
 
 Your phone detects red traffic lights, stop signs, cars and pedestrians, warns you and makes your driving experience safer.  Users can also share their ride footage and contribute in making the model even smarter and more robust.
 
+**Tensorflow Object Detection Model**
+
+Choice of the pre-trained model and the model's technique:
+
+For our models, I used the Tensorflow object detection API as described in the tutorial below:
+
+https://pythonprogramming.net/introduction-use-tensorflow-object-detection-api-tutorial/
+
+After seaching on the web, I've decided that a good compromise of accuracy and execution time is the SSD_mobilnet and for that reason I chose the ssd_mobilenet_v1_coco_2017_11_17 pre-trained model.
+
+**Tensorflow Object Detection Training -- Instructions**
+
+To get started clone the Tensorflow API repo:
+
+https://github.com/tensorflow/models/tree/master/research/object_detection
+
+--------------Datasets------------------:
+
+To train the model, I used the train dataset and to test it the test dataset. More accurately, I used the TFRecord files on each data set as described in the tutorial.
+
+-----------------Training---------------:
+
+Set up:
+
+1) Go to models - > research -> object_detection ->legacy
+2) In the data folder put the train.record and test.record files you want to use
+3) In the training folder configure the pipeline (basically the number of steps and learning rate)
+
+Train:
+
+1) Open terminal
+2) Navigate to models -> research (cd models -> cd research)
+3) Execute the following:
+```
+protoc object_detection/protos/*.proto --python_out=.
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+```
+4) Go to object_detection folder (cd object_detection) and the to legacy (cd legacy)
+5) Execute the folllowing:
+
+```
+python3 train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/pipeline.config
+```
+
+After the model is trained:
+
+1) Move the three last saved files from the training folder in legacy to the training file in training folder in object_detection.
+2) Open terminal
+3) Navigate to models - > research -> object_detection
+4) Execute to save the graph:
+
+```
+python3 export_inference_graph.py \
+--input_type image_tensor \
+--pipeline_config_path training/pipeline.config \
+--trained_checkpoint_prefix training/YOUR-LAST-SAVE-MODEL(eg model.ckpt-20000)\
+--output_directory A-NEW-NAME-DIRECTORY
+
+```
+
+--------------Test the model------------------:
+
+1) Open the Jupyter notebook in the object_detection folder
+2) Change the models name
+3) Run all cells
+
+--------------Important notes------------------------:
+
+1) The models were trained in Amazon AWS g3.4 large instance.
+Visit:
+
+https://aws.amazon.com
+
+2) You may find it useful to use FileZilla to transfer your data in the instance.
+Visit:
+
+https://filezilla-project.org
+
 **Project Structure - Files**
 
 - PyTorch Model
 - PyTorch Training
+- Tensorflow Model
 - PyTorch to Android Convertion Model
 - Android Apps 
 
